@@ -14,7 +14,7 @@ class MainController extends Controller
     	return view('main');
     }
 
-    public function submit( $request){
+    public function submit(Request $request){
 
     	if(strlen($request->input('text')) > 1200){
     		return redirect('/')->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
