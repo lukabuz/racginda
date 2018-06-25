@@ -26,7 +26,7 @@ class Submission extends Model
     		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
     			return 0;
     		} else{
-    			return Vote::where('cookie', $value)->where('submission_id', $id)->first()->get()->value 
+    			return Vote::where('cookie', $value)->where('submission_id', $id)->first()->get()->value;
     		}
 
     	} else {
