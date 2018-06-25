@@ -545,16 +545,16 @@
   <title>რაცგინდა</title>
 </head>
 <body>
-  @if(isset($message))
+  @if(Session::has('message'))
   <div class="notification success">
-    <p>{{$message}}</p>
+    <p>{{Session::get('message')</p>
     <h1>x</h1>
   </div>
   @endif
 
-  @if(isset($error))
+  @if(Session::has('error'))
   <div class="notification fail">
-    <p>{{$error}}</p>
+    <p>Session::get('error')</p>
     <h1>x</h1>
   </div>
   @endif
