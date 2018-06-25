@@ -12,7 +12,14 @@ class MainController extends Controller
 {
     //
     public function index(Request $request){
-    	return view('main');
+    	$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString());
+
+    	$submissions = $submissions->sortByDesc(function ($product, $key) {
+			$product->votecount = Vote::where('submission_id', $product->id)->sum('value');
+			return $product->votecount;
+		});
+
+    	return view('main')->with('submissions', $submissions);
     }
 
     public function submit(Request $request){
