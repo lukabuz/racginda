@@ -506,10 +506,58 @@
       }
     }
 
+    .notification.success {
+      background-color: #9ccc65;
+    }
+
+    .notification.fail {
+      background-color: #e53935;
+    }
+
+    .notification {
+      position: fixed;
+      top: 0;
+      height: 50px;
+      color: white;
+      width: 100%;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      font-family: bld;
+      overflow: hidden;
+      z-index: 99;
+      transition: height 250ms;
+    }
+
+    .notification h1 {
+      position: fixed;
+      top: -7px;
+      right: 15px;
+      font-size: 1.5rem;
+      font-family: english;
+      cursor: pointer;
+    }
+
+    .notification p {
+      text-align: center;
+    }
+
   </style>
   <title>რაცგინდა</title>
 </head>
 <body>
+  @if(isset($message))
+  <div class="notification success">
+    <p>{{$message}}</p>
+    <h1>x</h1>
+  </div>
+  @endif
+
+  @if(isset($error))
+  <div class="notification fail">
+    <p>{{$error}}</p>
+    <h1>x</h1>
+  </div>
+  @endif
+
   <main class="grid">
     <div class="form">
     <form action='/' method='POST' id="form1">
@@ -525,9 +573,17 @@
         <p>{{$submission->description}}</p>
       </div>
       <div class="voting">
+        @if($submission->votevalue() == 1)
+        <svg class="upvote active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"/></svg>
+        @else
         <svg class="upvote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"/></svg>
+        @endif
         <span>1</span>
+        @if($submission->votevalue() == -1)
+        <svg class="downvote active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/></svg>
+        @else
         <svg class="downvote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/></svg>
+        @endif
       </div>
     </div>
     @empty
@@ -542,7 +598,7 @@
  
   <script>
     $(document).ready(function(){
- 
+
       $('.upvote').click(function(){
  
         if( $(this).hasClass('active') ){
@@ -586,6 +642,12 @@
         //NEUTRAL VOTE DOSMTH
  
       });
+
+      $('.notification h1').click(function(){
+        $('.notification').css('height', '0');
+        $('.notification h1').css('display', 'none');
+      });
+
     });
   </script>
 </html>
