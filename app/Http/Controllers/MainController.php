@@ -13,7 +13,7 @@ class MainController extends Controller
 {
     //
     public function index(Request $request){
-    	$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString());
+    	$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->get();
 
     	$submissions = $submissions->sortByDesc(function ($product, $key) {
 			$product->votecount = Vote::where('submission_id', $product->id)->sum('value');
