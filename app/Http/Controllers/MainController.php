@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use App\Submission;
 use App\Vote;
 use Illuminate\Support\Facades\Cookie;
