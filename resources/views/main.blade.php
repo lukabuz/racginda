@@ -534,4 +534,58 @@
     @endforelse
   </main>
 </body>
+
+<script
+ src="https://code.jquery.com/jquery-3.3.1.min.js"
+ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+ crossorigin="anonymous"></script>
+ 
+  <script>
+    $(document).ready(function(){
+ 
+      $('.upvote').click(function(){
+ 
+        if( $(this).hasClass('active') ){
+          $(this).removeClass('active');
+          return;
+ 
+          //IF UPVOTE ACTIVE AND PRESSED AGAIN DOSMTH
+        }
+ 
+        if( $(this).closest('.voting').children('.downvote').hasClass('active') ){
+          $(this).closest('.voting').children('.downvote').removeClass('active');
+          $(this).addClass('active');
+          return;
+ 
+          //IF IT IS ALREADY DOWNVOTED BUT UPVOTE IS PRESSED DOSMTH
+        }
+ 
+        $(this).addClass('active');
+        //NEUTRAL VOTE DOSMTH
+ 
+      });
+ 
+      $('.downvote').click(function(){
+ 
+        if( $(this).hasClass('active') ){
+          $(this).removeClass('active');
+          return;
+ 
+          //IF UPVOTE ACTIVE AND PRESSED AGAIN DOSMTH
+        }
+ 
+        if( $(this).closest('.voting').children('.upvote').hasClass('active') ){
+          $(this).closest('.voting').children('.upvote').removeClass('active');
+          $(this).addClass('active');
+          return;
+ 
+          //IF IT IS ALREADY DOWNVOTED BUT UPVOTE IS PRESSED DOSMTH
+        }
+ 
+        $(this).addClass('active');
+        //NEUTRAL VOTE DOSMTH
+ 
+      });
+    });
+  </script>
 </html>
