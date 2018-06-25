@@ -26,7 +26,7 @@ class Submission extends Model
     		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
     			return 0;
     		} else{
-    			return Vote::where('cookie', $value)->where('submission_id', $id)->first()->get()->value;
+    			return Vote::where('cookie', $value)->where('submission_id', $id)->first()->value;
     		}
 
     	} else {
@@ -34,7 +34,7 @@ class Submission extends Model
     			return 0;
     		}
 
-    		return Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first()->get()->value;
+    		return Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first()->value;
     	}
     }
 }
