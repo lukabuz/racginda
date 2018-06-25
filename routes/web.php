@@ -14,3 +14,7 @@
 Route::get('/', 'MainController@index');
 
 Route::post('/', 'MainController@submit');
+
+Route::get('/api/vote/{id}/upvote', 'MainController@upvote');
+
+Route::get('/api/vote/{id}/downvote', 'MainController@downvote');

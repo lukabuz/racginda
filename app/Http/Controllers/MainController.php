@@ -61,7 +61,151 @@ class MainController extends Controller
     			$submission->save();
 
 	    		return redirect('/')->with('message', 'თქვენი პოსტი დამატებულია!')->withCookie(Cookie::forever('userToken', $token));
+	    	} else {
+	    		return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
 	    	}
     	}
+    }
+
+    public function upvote(Request $request, $id){
+    	$value = Cookie::get('userToken');
+
+    	$submission = Submission::findOrFail($id);
+
+    	if($value){
+    		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
+
+				$vote = new Vote;
+
+				$vote->submission_id = $id;
+
+				$vote->cookie = $value;
+    			$vote->ip = \Request::ip();
+    			$vote['user-agent'] = $request->header('User-Agent');
+
+    			$vote->value = 1;
+
+    			$vote->save();
+
+    		} else {
+    			$vote = Vote::where('cookie', $value)->where('submission_id', $id)->first();
+
+    			if($vote->value == 1){
+
+    				$vote->delete();
+
+    			} else {
+
+    				$vote->value = 1;
+
+    				$vote->save();
+
+    			}
+    		}
+    	} else {
+    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+	    		
+	    		$token = str_random(40);
+
+	    		$vote = new Vote;
+
+	    		$vote->submission_id = $id;
+
+    			$vote->value = 1;
+    			$vote->cookie = $token;
+    			$vote->ip = \Request::ip();
+    			$vote['user-agent'] = $request->header('User-Agent');
+
+    			$vote->save();
+
+	    	} else {
+	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
+
+    			if($vote->value == 1){
+
+    				$vote->delete();
+
+    			} else {
+
+    				$vote->value = 1;
+
+    				$vote->save();
+
+    			}
+	    	}
+    	}
+
+    	return 'true';
+    }
+
+    public function downvote(Request $request, $id){
+    	$value = Cookie::get('userToken');
+
+    	$submission = Submission::findOrFail($id);
+
+    	if($value){
+    		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
+
+				$vote = new Vote;
+
+				$vote->submission_id = $id;
+
+				$vote->cookie = $value;
+    			$vote->ip = \Request::ip();
+    			$vote['user-agent'] = $request->header('User-Agent');
+
+    			$vote->value = -1;
+
+    			$vote->save();
+
+    		} else {
+    			$vote = Vote::where('cookie', $value)->where('submission_id', $id)->first();
+
+    			if($vote->value == -1){
+
+    				$vote->delete();
+
+    			} else {
+
+    				$vote->value = -1;
+
+    				$vote->save();
+
+    			}
+    		}
+    	} else {
+    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+	    		
+	    		$token = str_random(40);
+
+	    		$vote = new Vote;
+
+	    		$vote->submission_id = $id;
+
+    			$vote->value = -1;
+    			$vote->cookie = $token;
+    			$vote->ip = \Request::ip();
+    			$vote['user-agent'] = $request->header('User-Agent');
+
+    			$vote->save();
+
+	    	} else {
+	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
+
+    			if($vote->value == -1){
+
+    				$vote->delete();
+
+    			} else {
+
+    				$vote->value = -1;
+
+    				$vote->save();
+
+    			}
+	    	}
+    	}
+
+    	return 'true';
     }
 }
