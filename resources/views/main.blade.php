@@ -573,7 +573,7 @@
       <div class="content">
         <p>{{$submission->description}}</p>
       </div>
-      <div class="voting" data-id="4">
+      <div class="voting" data-id="{{$submission->id}}">
         @if($submission->votevalue() == 1)
         <svg class="upvote active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"/></svg>
         @else
@@ -601,9 +601,16 @@
     $(document).ready(function(){
 
       $('.upvote').click(function(){
+
+        var id = $(this).parent().attr('data-id');
  
         if( $(this).hasClass('active') ){
           $(this).removeClass('active');
+
+          $.get("/api/vote/" + id + "/upvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
+
           return;
  
           //IF UPVOTE ACTIVE AND PRESSED AGAIN DOSMTH
@@ -612,6 +619,11 @@
         if( $(this).closest('.voting').children('.downvote').hasClass('active') ){
           $(this).closest('.voting').children('.downvote').removeClass('active');
           $(this).addClass('active');
+
+          $.get("/api/vote/" + id + "/upvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
+
           return;
  
           //IF IT IS ALREADY DOWNVOTED BUT UPVOTE IS PRESSED DOSMTH
@@ -619,13 +631,24 @@
  
         $(this).addClass('active');
         //NEUTRAL VOTE DOSMTH
- 
+        
+        $.get("/api/vote/" + id + "/upvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
+
       });
  
       $('.downvote').click(function(){
+
+        var id = $(this).parent().attr('data-id');
  
         if( $(this).hasClass('active') ){
           $(this).removeClass('active');
+
+          $.get("/api/vote/" + id + "/downvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
+
           return;
  
           //IF UPVOTE ACTIVE AND PRESSED AGAIN DOSMTH
@@ -634,6 +657,11 @@
         if( $(this).closest('.voting').children('.upvote').hasClass('active') ){
           $(this).closest('.voting').children('.upvote').removeClass('active');
           $(this).addClass('active');
+
+          $.get("/api/vote/" + id + "/downvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
+
           return;
  
           //IF IT IS ALREADY DOWNVOTED BUT UPVOTE IS PRESSED DOSMTH
@@ -641,6 +669,10 @@
  
         $(this).addClass('active');
         //NEUTRAL VOTE DOSMTH
+
+        $.get("/api/vote/" + id + "/downvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
  
       });
 
