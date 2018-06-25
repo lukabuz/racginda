@@ -7,6 +7,7 @@ use App\Submission;
 use App\Vote;
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
