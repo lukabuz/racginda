@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Submission;
 use App\Vote;
 use Illuminate\Support\Facades\Cookie;
-use Carbon;
+use Carbon\Carbon;
 
 class MainController extends Controller
 {
