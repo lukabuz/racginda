@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Submission;
 use App\Vote;
+use Illuminate\Support\Facades\Cookie;
 
 class MainController extends Controller
 {
