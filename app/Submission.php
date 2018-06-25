@@ -17,6 +17,10 @@ class Submission extends Model
         return $this->hasMany('App\Vote');
     }
 
+    public function score(){
+    	return Vote::where('submission_id', $product->id)->sum('value');
+    }
+
     public function votevalue(){
     	$value = Cookie::get('userToken');
 
