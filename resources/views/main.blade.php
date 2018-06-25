@@ -538,6 +538,7 @@
 
     .notification p {
       text-align: center;
+      padding: 0px 40px;
     }
 
   </style>
