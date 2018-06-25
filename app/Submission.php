@@ -18,7 +18,7 @@ class Submission extends Model
     }
 
     public function score(){
-    	return Vote::where('submission_id', $product->id)->sum('value');
+    	return Vote::where('submission_id', $this->id)->sum('value');
     }
 
     public function votevalue(){
