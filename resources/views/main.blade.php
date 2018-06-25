@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <title>რაცგინდა</title>
 </head>
 <body>
@@ -12,6 +12,7 @@
     <div class="form">
     <form action='/' method='POST' id="form1">
       <h1>ასჯერ გაზომე, ერთხელ გაჭერი.</h1>
+      @csrf
       <textarea name="text" rows="6" cols="80"></textarea>
       <button class="btn" type="submit" form="form1">გაჭრა</button>
     </div>
