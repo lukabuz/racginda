@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
 use App\Submission;
 use App\Vote;
 use Illuminate\Support\Facades\Cookie;
@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Cookie;
 class MainController extends Controller
 {
     //
-    public function index(Illuminate\Http\Request $request){
+    public function index(Request $request){
     	return view('main');
     }
 
-    public function submit(Illuminate\Http\Request $request){
+    public function submit( $request){
 
     	if(strlen($request->input('text')) > 1200){
     		return redirect('/')->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
@@ -28,7 +28,7 @@ class MainController extends Controller
 
     			$submission->description = $request->input('text');
     			$submission->cookie = $value;
-    			$submission->ip = Request::ip();
+    			$submission->ip = \Request::ip();
     			$submission['user-agent'] = $request->header('User-Agent');
 
     			$submission->save();
@@ -46,7 +46,7 @@ class MainController extends Controller
 
     			$submission->description = $request->input('text');
     			$submission->cookie = $token;
-    			$submission->ip = Request::ip();
+    			$submission->ip = \Request::ip();
     			$submission['user-agent'] = $request->header('User-Agent');
 
     			$submission->save();
