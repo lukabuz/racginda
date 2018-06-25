@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Cookie;
 class MainController extends Controller
 {
     //
-    public function index(Request $request){
+    public function index(Illuminate\Http\Request $request){
     	return view('main');
     }
 
-    public function submit(Request $request){
+    public function submit(Illuminate\Http\Request $request){
 
     	if(strlen($request->input('text')) > 1200){
     		return redirect('/')->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
