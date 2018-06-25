@@ -547,14 +547,14 @@
 <body>
   @if(Session::has('message'))
   <div class="notification success">
-    <p>{{Session::get('message')</p>
+    <p>{{Session::get('message')}}</p>
     <h1>x</h1>
   </div>
   @endif
 
   @if(Session::has('error'))
   <div class="notification fail">
-    <p>Session::get('error')</p>
+    <p>{{Session::get('error')}}</p>
     <h1>x</h1>
   </div>
   @endif
