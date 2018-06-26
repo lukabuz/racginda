@@ -549,6 +549,7 @@
 
     .content p a {
       text-decoration: none;
+      color: #4a148c;
     }
 
   </style>
