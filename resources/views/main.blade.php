@@ -548,6 +548,7 @@
     .content p a {
       text-decoration: none;
       color: #4a148c;
+      word-break: break-all;
     }
 
     @media only screen and (min-width: 1150px) {
