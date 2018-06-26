@@ -737,6 +737,7 @@
           <h3>{{$reply->getid()}}</h3>
         </div>
       </div>
+    @empty
     @endforelse
 
   </main>
