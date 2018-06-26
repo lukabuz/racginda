@@ -16,7 +16,7 @@ class SubmissionsController extends Controller
     public function show(Request $request, $id){
     	$submission = Submission::findOrFail($id);
 
-    	return $submission;
+    	return view('submission')->with('submission', $submission);
     }
 
     public function reply(Request $request, $id){
