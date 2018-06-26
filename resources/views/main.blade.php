@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="https://i.imgur.com/OdB5Wd5.png" type="image/png" sizes="16x16">
   <style>
       /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
