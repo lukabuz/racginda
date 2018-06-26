@@ -725,7 +725,6 @@
         <a href="#"><h3>{{$submission->replyconut()}}</h3></a>
       </div>
     </div>
-    @empty
     @endforelse
   </main>
 </body>
