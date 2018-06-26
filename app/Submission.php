@@ -34,11 +34,11 @@ class Submission extends Model
     		}
 
     	} else {
-    		if(Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+    		if(Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', app('request')->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
     			return 0;
     		}
 
-    		return Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first()->value;
+    		return Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', app('request')->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first()->value;
     	}
     }
 }
