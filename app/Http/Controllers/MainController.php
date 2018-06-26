@@ -13,6 +13,8 @@ class MainController extends Controller
 {
     //
     public function index(Request $request){
+
+    	dd($request);
     	$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->get();
 
     	$submissions = $submissions->sortByDesc(function ($product, $key) {
