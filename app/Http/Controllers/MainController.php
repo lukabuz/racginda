@@ -33,7 +33,9 @@ class MainController extends Controller
 
     	$ip = $request->header('x-forwarded-for');
 
-    	$ip = substr($ip, 0, strpos($ip, ','));
+    	$ip = explode(",",$ip);
+
+        $ip = $ip[0];
 
     	if(strlen($request->input('text')) > 1200){
     		return redirect('/')->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
@@ -84,7 +86,9 @@ class MainController extends Controller
 
     	$ip = $request->header('x-forwarded-for');
 
-    	$ip = substr($ip, 0, strpos($ip, ','));
+    	$ip = explode(",",$ip);
+
+        $ip = $ip[0];
 
     	if($value){
     		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
@@ -159,7 +163,9 @@ class MainController extends Controller
 
     	$ip = $request->header('x-forwarded-for');
 
-    	$ip = substr($ip, 0, strpos($ip, ','));
+    	$ip = explode(",",$ip);
+
+        $ip = $ip[0];
 
     	if($value){
     		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){

@@ -28,7 +28,9 @@ class Submission extends Model
 
     	$ip = app('request')->header('x-forwarded-for');
 
-    	$ip = substr($ip, 0, strpos($ip, ','));
+    	$ip = explode(",",$ip);
+
+        $ip = $ip[0];
 
     	if($value){
     		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
