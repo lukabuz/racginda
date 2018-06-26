@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="https://i.imgur.com/OdB5Wd5.png" type="image/png" sizes="16x16">
-  <style>
+  <meta property="og:url"                content="http://racginda.site" />
+  <meta property="og:type"               content="website" />
+  <meta property="og:title"              content="რაცგინდა" />
+  <meta property="og:description"        content="რაცგინდა - აქ სიტყვის თავისუფლება და ანონიმურობა მეფობს" />
+  <meta property="og:image"              content="https://i.imgur.com/LG0A70T.png" />
+    <style>
       /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
     /* Document
@@ -563,16 +568,16 @@
   <main class="grid">
     <div class="form">
     <form action='/' method='POST' id="form1">
-      <h1>ასჯერ გაზომე, ერთხელ გაჭერი.</h1>
+      <h1>დააფიქსირე შენი აზრი.</h1>
       @csrf
-      <textarea placeholder="დააფიქსირე შენი აზრი." name="text" rows="6" cols="80"></textarea>
+      <textarea placeholder="ასჯერ გაზომე, ერთხელ გაჭერი." name="text" rows="6" cols="80"></textarea>
       <button class="btn" type="submit" form="form1">გაჭრა</button>
     </div>
 
     @forelse($submissions as $submission)
     <div class="item">
       <div class="content">
-        <p>{{$submission->description}}</p>
+        <p>{!! nl2br(e($submission->description)) !!}</p>
       </div>
       <div class="voting" data-id="{{$submission->id}}">
         @if($submission->votevalue() == 1)
