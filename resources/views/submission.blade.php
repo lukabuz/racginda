@@ -700,7 +700,7 @@
 
     <div class="item">
       <div class="content">
-        <p>{!! preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', nl2br(e($submission->description))) !!}</p>
+        <p>{!! nl2br(e($submission->description)) !!}</p>
       </div>
       <div class="voting" data-id="{{$submission->id}}">
         @if($submission->votevalue() == 1)
