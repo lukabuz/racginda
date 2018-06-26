@@ -47,7 +47,7 @@ class MainController extends Controller
     			return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
     		}
     	} else {
-    		if(Submission::where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subDays(2)->toDateTimeString())->count() == 0){
+    		if(Submission::where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subDays(2)->toDateTimeString())->count() == 0){
 	    		
 	    		$token = str_random(40);
 
@@ -103,7 +103,7 @@ class MainController extends Controller
     			}
     		}
     	} else {
-    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
 	    		
 	    		$token = str_random(40);
 
@@ -119,7 +119,7 @@ class MainController extends Controller
     			$vote->save();
 
 	    	} else {
-	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
+	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
 
     			if($vote->value == 1){
 
@@ -174,7 +174,7 @@ class MainController extends Controller
     			}
     		}
     	} else {
-    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
 	    		
 	    		$token = str_random(40);
 
@@ -190,7 +190,7 @@ class MainController extends Controller
     			$vote->save();
 
 	    	} else {
-	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', \Request::ip())->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
+	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
 
     			if($vote->value == -1){
 
