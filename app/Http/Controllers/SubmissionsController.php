@@ -14,9 +14,11 @@ class SubmissionsController extends Controller
 {
     //
     public function show(Request $request, $id){
-    	$submission = Submission::findOrFail($id);
+    	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->count() == 0){
+    		die(404);
+    	}
 
-    	if($submission->created)
+    	$submission = Submission::findOrFail($id);
 
     	$replies = Submission_reply::where('submission_id', $id)->orderBy('created_at', 'ASC')->get();
 
@@ -24,7 +26,7 @@ class SubmissionsController extends Controller
     }
 
     public function reply(Request $request, $id){
-    	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())){
+    	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->count() == 0){
     		die(404);
     	}
 
