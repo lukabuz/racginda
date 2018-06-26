@@ -18,8 +18,6 @@ class SubmissionsController extends Controller
 
     	$replies = Submission_reply::where('submission_id', $id)->get();
 
-    	dd($replies);
-
     	return view('submission')->with('submission', $submission)->with('replies', $replies);
     }
 
