@@ -49,7 +49,7 @@ class Submission extends Model
     }
 
     public function getid(){
-        $id = bcrypt($this['user-agent'] . $this->ip . "დედის მუტელი");
+        $id = md5($this['user-agent'] . $this->ip . "დედის მუტელი");
 
         return substr($id, -10, 5);
     }
