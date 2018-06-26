@@ -26,6 +26,10 @@ class Submission extends Model
 
     	$id = $this->id;
 
+    	$ip = app('request')->header('x-forwarded-for');
+
+    	$ip = substr($ip, 0, strpos($ip, ','));
+
     	if($value){
     		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
     			return 0;
@@ -34,11 +38,11 @@ class Submission extends Model
     		}
 
     	} else {
-    		if(Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', app('request')->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+    		if(Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
     			return 0;
     		}
 
-    		return Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', app('request')->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first()->value;
+    		return Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first()->value;
     	}
     }
 }

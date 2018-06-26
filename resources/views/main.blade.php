@@ -656,21 +656,17 @@
         <p>{!! preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', nl2br(e($submission->description))) !!}</p>
       </div>
       <div class="voting" data-id="{{$submission->id}}">
-        <a href="/api/vote/{{$submission->id}}/upvote">
         @if($submission->votevalue() == 1)
         <svg class="upvote active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"/></svg>
         @else
         <svg class="upvote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"/></svg>
         @endif
-        </a>
         <span>{{$submission->score()}}</span>
-        <a href="/api/vote/{{$submission->id}}/downvote">
         @if($submission->votevalue() == -1)
         <svg class="downvote active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/></svg>
         @else
         <svg class="downvote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/></svg>
         @endif
-        </a>
       </div>
     </div>
     @empty
@@ -686,107 +682,107 @@
   <script>
     $(document).ready(function(){
 
-      // $('.upvote').click(function(){
+      $('.upvote').click(function(){
 
-      //   var id = $(this).parent().attr('data-id');
+        var id = $(this).parent().attr('data-id');
  
-      //   if( $(this).hasClass('active') ){
-      //     $(this).removeClass('active');
+        if( $(this).hasClass('active') ){
+          $(this).removeClass('active');
 
-      //     let currentScore = $(this).closest('.voting').children('span').html();
-      //     currentScore--;
-      //     $(this).closest('.voting').children('span').html(currentScore);
+          let currentScore = $(this).closest('.voting').children('span').html();
+          currentScore--;
+          $(this).closest('.voting').children('span').html(currentScore);
 
-      //     $.get("/api/vote/" + id + "/upvote", function(data, status){
-      //         console.log("Data: " + data + "\nStatus: " + status);
-      //     });
+          $.get("/api/vote/" + id + "/upvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
 
-      //     return;
+          return;
  
-      //     //IF UPVOTE ACTIVE AND PRESSED AGAIN DOSMTH
-      //   }
+          //IF UPVOTE ACTIVE AND PRESSED AGAIN DOSMTH
+        }
  
-      //   if( $(this).closest('.voting').children('.downvote').hasClass('active') ){
-      //     $(this).closest('.voting').children('.downvote').removeClass('active');
-      //     $(this).addClass('active');
+        if( $(this).closest('.voting').children('.downvote').hasClass('active') ){
+          $(this).closest('.voting').children('.downvote').removeClass('active');
+          $(this).addClass('active');
 
-      //     let currentScore = $(this).closest('.voting').children('span').html();
-      //     currentScore++;
-      //     currentScore++;
-      //     $(this).closest('.voting').children('span').html(currentScore);
+          let currentScore = $(this).closest('.voting').children('span').html();
+          currentScore++;
+          currentScore++;
+          $(this).closest('.voting').children('span').html(currentScore);
 
-      //     $.get("/api/vote/" + id + "/upvote", function(data, status){
-      //         console.log("Data: " + data + "\nStatus: " + status);
-      //     });
+          $.get("/api/vote/" + id + "/upvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
 
-      //     return;
+          return;
  
-      //     //IF IT IS ALREADY DOWNVOTED BUT UPVOTE IS PRESSED DOSMTH
-      //   }
+          //IF IT IS ALREADY DOWNVOTED BUT UPVOTE IS PRESSED DOSMTH
+        }
  
-      //   $(this).addClass('active');
-      //   //NEUTRAL VOTE DOSMTH
+        $(this).addClass('active');
+        //NEUTRAL VOTE DOSMTH
 
-      //   let currentScore = $(this).closest('.voting').children('span').html();
-      //   currentScore++;
-      //   $(this).closest('.voting').children('span').html(currentScore);
+        let currentScore = $(this).closest('.voting').children('span').html();
+        currentScore++;
+        $(this).closest('.voting').children('span').html(currentScore);
         
-      //   $.get("/api/vote/" + id + "/upvote", function(data, status){
-      //         console.log("Data: " + data + "\nStatus: " + status);
-      //     });
+        $.get("/api/vote/" + id + "/upvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
 
-      // });
+      });
  
-      // $('.downvote').click(function(){
+      $('.downvote').click(function(){
 
-      //   var id = $(this).parent().attr('data-id');
+        var id = $(this).parent().attr('data-id');
  
-      //   if( $(this).hasClass('active') ){
-      //     $(this).removeClass('active');
+        if( $(this).hasClass('active') ){
+          $(this).removeClass('active');
 
-      //     let currentScore = $(this).closest('.voting').children('span').html();
-      //     currentScore++;
-      //     $(this).closest('.voting').children('span').html(currentScore);
+          let currentScore = $(this).closest('.voting').children('span').html();
+          currentScore++;
+          $(this).closest('.voting').children('span').html(currentScore);
 
-      //     $.get("/api/vote/" + id + "/downvote", function(data, status){
-      //         console.log("Data: " + data + "\nStatus: " + status);
-      //     });
+          $.get("/api/vote/" + id + "/downvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
 
-      //     return;
+          return;
  
-      //     //IF UPVOTE ACTIVE AND PRESSED AGAIN DOSMTH
-      //   }
+          //IF UPVOTE ACTIVE AND PRESSED AGAIN DOSMTH
+        }
  
-      //   if( $(this).closest('.voting').children('.upvote').hasClass('active') ){
-      //     $(this).closest('.voting').children('.upvote').removeClass('active');
-      //     $(this).addClass('active');
+        if( $(this).closest('.voting').children('.upvote').hasClass('active') ){
+          $(this).closest('.voting').children('.upvote').removeClass('active');
+          $(this).addClass('active');
 
-      //     let currentScore = $(this).closest('.voting').children('span').html();
-      //     currentScore--;
-      //     currentScore--;
-      //     $(this).closest('.voting').children('span').html(currentScore);
+          let currentScore = $(this).closest('.voting').children('span').html();
+          currentScore--;
+          currentScore--;
+          $(this).closest('.voting').children('span').html(currentScore);
 
-      //     $.get("/api/vote/" + id + "/downvote", function(data, status){
-      //         console.log("Data: " + data + "\nStatus: " + status);
-      //     });
+          $.get("/api/vote/" + id + "/downvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
 
-      //     return;
+          return;
  
-      //     //IF IT IS ALREADY DOWNVOTED BUT UPVOTE IS PRESSED DOSMTH
-      //   }
+          //IF IT IS ALREADY DOWNVOTED BUT UPVOTE IS PRESSED DOSMTH
+        }
  
-      //   $(this).addClass('active');
-      //   //NEUTRAL VOTE DOSMTH
+        $(this).addClass('active');
+        //NEUTRAL VOTE DOSMTH
 
-      //   let currentScore = $(this).closest('.voting').children('span').html();
-      //   currentScore--;
-      //   $(this).closest('.voting').children('span').html(currentScore);
+        let currentScore = $(this).closest('.voting').children('span').html();
+        currentScore--;
+        $(this).closest('.voting').children('span').html(currentScore);
 
-      //   $.get("/api/vote/" + id + "/downvote", function(data, status){
-      //         console.log("Data: " + data + "\nStatus: " + status);
-      //     });
+        $.get("/api/vote/" + id + "/downvote", function(data, status){
+              console.log("Data: " + data + "\nStatus: " + status);
+          });
  
-      // });
+      });
 
       $('.notification h1').click(function(){
         $('.notification').css('height', '0');

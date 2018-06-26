@@ -31,6 +31,10 @@ class MainController extends Controller
 
     public function submit(Request $request){
 
+    	$ip = $request->header('x-forwarded-for');
+
+    	$ip = substr($ip, 0, strpos($ip, ','));
+
     	if(strlen($request->input('text')) > 1200){
     		return redirect('/')->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
     	}
@@ -43,7 +47,7 @@ class MainController extends Controller
 
     			$submission->description = $request->input('text');
     			$submission->cookie = $value;
-    			$submission->ip = $request->header('x-forwarded-for');
+    			$submission->ip = $ip;
     			$submission['user-agent'] = $request->header('User-Agent');
 
     			$submission->save();
@@ -53,7 +57,7 @@ class MainController extends Controller
     			return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
     		}
     	} else {
-    		if(Submission::where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())->count() == 0){
+    		if(Submission::where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())->count() == 0){
 	    		
 	    		$token = str_random(40);
 
@@ -61,7 +65,7 @@ class MainController extends Controller
 
     			$submission->description = $request->input('text');
     			$submission->cookie = $token;
-    			$submission->ip = $request->header('x-forwarded-for');
+    			$submission->ip = $ip;
     			$submission['user-agent'] = $request->header('User-Agent');
 
     			$submission->save();
@@ -78,6 +82,10 @@ class MainController extends Controller
 
     	$submission = Submission::findOrFail($id);
 
+    	$ip = $request->header('x-forwarded-for');
+
+    	$ip = substr($ip, 0, strpos($ip, ','));
+
     	if($value){
     		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
 
@@ -86,7 +94,7 @@ class MainController extends Controller
 				$vote->submission_id = $id;
 
 				$vote->cookie = $value;
-    			$vote->ip = \Request::ip();
+    			$vote->ip = $ip;
     			$vote['user-agent'] = $request->header('User-Agent');
 
     			$vote->value = 1;
@@ -109,7 +117,7 @@ class MainController extends Controller
     			}
     		}
     	} else {
-    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
 	    		
 	    		$token = str_random(40);
 
@@ -119,13 +127,13 @@ class MainController extends Controller
 
     			$vote->value = 1;
     			$vote->cookie = $token;
-    			$vote->ip = $request->header('x-forwarded-for');
+    			$vote->ip = $ip
     			$vote['user-agent'] = $request->header('User-Agent');
 
     			$vote->save();
 
 	    	} else {
-	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
+	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
 
     			if($vote->value == 1){
 
@@ -141,7 +149,7 @@ class MainController extends Controller
 	    	}
     	}
 
-    	return redirect('/');
+    	return 'true';
     }
 
     public function downvote(Request $request, $id){
@@ -149,6 +157,10 @@ class MainController extends Controller
 
     	$submission = Submission::findOrFail($id);
 
+    	$ip = $request->header('x-forwarded-for');
+
+    	$ip = substr($ip, 0, strpos($ip, ','));
+
     	if($value){
     		if(Vote::where('cookie', $value)->where('submission_id', $id)->count() == 0){
 
@@ -157,7 +169,7 @@ class MainController extends Controller
 				$vote->submission_id = $id;
 
 				$vote->cookie = $value;
-    			$vote->ip = $request->header('x-forwarded-for');
+    			$vote->ip = $ip;
     			$vote['user-agent'] = $request->header('User-Agent');
 
     			$vote->value = -1;
@@ -180,7 +192,7 @@ class MainController extends Controller
     			}
     		}
     	} else {
-    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+    		if(Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
 	    		
 	    		$token = str_random(40);
 
@@ -190,13 +202,13 @@ class MainController extends Controller
 
     			$vote->value = -1;
     			$vote->cookie = $token;
-    			$vote->ip = $request->header('x-forwarded-for');
+    			$vote->ip = $ip;
     			$vote['user-agent'] = $request->header('User-Agent');
 
     			$vote->save();
 
 	    	} else {
-	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
+	    		$vote = Vote::where('submission_id', $id)->where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
 
     			if($vote->value == -1){
 
@@ -212,6 +224,6 @@ class MainController extends Controller
 	    	}
     	}
 
-    	return redirect('/');
+    	return 'true';
     }
 }
