@@ -127,7 +127,7 @@ class MainController extends Controller
 
     			$vote->value = 1;
     			$vote->cookie = $token;
-    			$vote->ip = $ip
+    			$vote->ip = $ip;
     			$vote['user-agent'] = $request->header('User-Agent');
 
     			$vote->save();
