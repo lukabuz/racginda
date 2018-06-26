@@ -725,7 +725,7 @@
       </div>
     </div>
 
-    @forelse(replies as $reply)
+    @forelse($replies as $reply)
       <div class="item-reply">
         <div class="content">
           <p>{!! preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', nl2br(e($reply->description))) !!}</p>
