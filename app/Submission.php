@@ -8,6 +8,7 @@ use App\Vote;
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
 use Request;
+use App\Submission_reply;
 
 class Submission extends Model
 {
@@ -57,5 +58,9 @@ class Submission extends Model
         $id = md5($this['user-agent'] . $this->ip . "დედის მუტელი");
 
         return substr($id, -10, 5);
+    }
+
+    public function replyconut(){
+        return Submission_reply::where('submission_id', $this->id)->count();
     }
 }
