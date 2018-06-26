@@ -47,4 +47,10 @@ class Submission extends Model
     		return Vote::where('submission_id', $id)->where('user-agent', \Request::header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first()->value;
     	}
     }
+
+    public function getid(){
+        $id = bcrypt($this['user-agent'] . $this->ip . "დედის მუტელი");
+
+        return substr($id, -10, 5);
+    }
 }
