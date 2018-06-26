@@ -18,6 +18,8 @@ class SubmissionsController extends Controller
 
     	$replies = Submission_reply::where('submission_id', $id)->orderBy('created_at', 'asc');
 
+    	dd($replies);
+
     	return view('submission')->with('submission', $submission)->with('replies', $replies);
     }
 
