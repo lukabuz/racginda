@@ -30,11 +30,11 @@ class SubmissionsController extends Controller
         $ip = $ip[0];
 
     	if(strlen($request->input('text')) > 1200){
-    		return redirect('back')->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
+    		return redirect()->back()->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
     	}
 
         if(strlen($request->input('text')) < 2){
-            return redirect('back')->with('error', 'თქვენი პოსტი ძალიან მოკლეა!');
+            return redirect()->back()->with('error', 'თქვენი პოსტი ძალიან მოკლეა!');
         }
 
     	$value = Cookie::get('userToken');
@@ -51,9 +51,9 @@ class SubmissionsController extends Controller
 
     			$submission->save();
 
-    			return redirect('back')->with('message', 'თქვენი პოსტი დამატებულია!');
+    			return redirect()->back()->with('message', 'თქვენი პოსტი დამატებულია!');
     		} else {
-    			return redirect('back')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
+    			return redirect()->back()->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
     		}
     	} else {
     		if(Submission_reply::where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())->count() == 0){
@@ -70,9 +70,9 @@ class SubmissionsController extends Controller
 
     			$submission->save();
 
-	    		return redirect('back')->with('message', 'თქვენი პოსტი დამატებულია!')->withCookie(Cookie::forever('userToken', $token));
+	    		return redirect()->back()->with('message', 'თქვენი პოსტი დამატებულია!')->withCookie(Cookie::forever('userToken', $token));
 	    	} else {
-	    		return redirect('back')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
+	    		return redirect()->back()->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
 	    	}
     	}
     }
