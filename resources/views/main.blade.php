@@ -565,7 +565,7 @@
     <form action='/' method='POST' id="form1">
       <h1>ასჯერ გაზომე, ერთხელ გაჭერი.</h1>
       @csrf
-      <textarea name="text" rows="6" cols="80"></textarea>
+      <textarea placeholder="დააფიქსირე შენი აზრი." name="text" rows="6" cols="80"></textarea>
       <button class="btn" type="submit" form="form1">გაჭრა</button>
     </div>
 
