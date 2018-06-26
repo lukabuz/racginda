@@ -607,6 +607,10 @@
         if( $(this).hasClass('active') ){
           $(this).removeClass('active');
 
+          let currentScore = $(this).closest('.voting').children('span').html();
+          currentScore--;
+          $(this).closest('.voting').children('span').html(currentScore);
+
           $.get("/api/vote/" + id + "/upvote", function(data, status){
               console.log("Data: " + data + "\nStatus: " + status);
           });
@@ -620,6 +624,11 @@
           $(this).closest('.voting').children('.downvote').removeClass('active');
           $(this).addClass('active');
 
+          let currentScore = $(this).closest('.voting').children('span').html();
+          currentScore++;
+          currentScore++;
+          $(this).closest('.voting').children('span').html(currentScore);
+
           $.get("/api/vote/" + id + "/upvote", function(data, status){
               console.log("Data: " + data + "\nStatus: " + status);
           });
@@ -631,6 +640,10 @@
  
         $(this).addClass('active');
         //NEUTRAL VOTE DOSMTH
+
+        let currentScore = $(this).closest('.voting').children('span').html();
+        currentScore++;
+        $(this).closest('.voting').children('span').html(currentScore);
         
         $.get("/api/vote/" + id + "/upvote", function(data, status){
               console.log("Data: " + data + "\nStatus: " + status);
@@ -645,6 +658,10 @@
         if( $(this).hasClass('active') ){
           $(this).removeClass('active');
 
+          let currentScore = $(this).closest('.voting').children('span').html();
+          currentScore++;
+          $(this).closest('.voting').children('span').html(currentScore);
+
           $.get("/api/vote/" + id + "/downvote", function(data, status){
               console.log("Data: " + data + "\nStatus: " + status);
           });
@@ -658,6 +675,11 @@
           $(this).closest('.voting').children('.upvote').removeClass('active');
           $(this).addClass('active');
 
+          let currentScore = $(this).closest('.voting').children('span').html();
+          currentScore--;
+          currentScore--;
+          $(this).closest('.voting').children('span').html(currentScore);
+
           $.get("/api/vote/" + id + "/downvote", function(data, status){
               console.log("Data: " + data + "\nStatus: " + status);
           });
@@ -669,6 +691,10 @@
  
         $(this).addClass('active');
         //NEUTRAL VOTE DOSMTH
+
+        let currentScore = $(this).closest('.voting').children('span').html();
+        currentScore--;
+        $(this).closest('.voting').children('span').html(currentScore);
 
         $.get("/api/vote/" + id + "/downvote", function(data, status){
               console.log("Data: " + data + "\nStatus: " + status);
