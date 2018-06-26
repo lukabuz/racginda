@@ -53,7 +53,7 @@ class MainController extends Controller
     			return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
     		}
     	} else {
-    		if(Submission::where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subDays(2)->toDateTimeString())->count() == 0){
+    		if(Submission::where('user-agent', $request->header('User-Agent'))->where('ip', $request->header('x-forwarded-for'))->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())->count() == 0){
 	    		
 	    		$token = str_random(40);
 
