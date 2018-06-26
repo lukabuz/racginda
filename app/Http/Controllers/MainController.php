@@ -39,7 +39,7 @@ class MainController extends Controller
 
     			$submission->description = $request->input('text');
     			$submission->cookie = $value;
-    			$submission->ip = \Request::ip();
+    			$submission->ip = $request->header('x-forwarded-for');
     			$submission['user-agent'] = $request->header('User-Agent');
 
     			$submission->save();
@@ -57,7 +57,7 @@ class MainController extends Controller
 
     			$submission->description = $request->input('text');
     			$submission->cookie = $token;
-    			$submission->ip = \Request::ip();
+    			$submission->ip = $request->header('x-forwarded-for');
     			$submission['user-agent'] = $request->header('User-Agent');
 
     			$submission->save();
@@ -115,7 +115,7 @@ class MainController extends Controller
 
     			$vote->value = 1;
     			$vote->cookie = $token;
-    			$vote->ip = \Request::ip();
+    			$vote->ip = $request->header('x-forwarded-for');
     			$vote['user-agent'] = $request->header('User-Agent');
 
     			$vote->save();
@@ -153,7 +153,7 @@ class MainController extends Controller
 				$vote->submission_id = $id;
 
 				$vote->cookie = $value;
-    			$vote->ip = \Request::ip();
+    			$vote->ip = $request->header('x-forwarded-for');
     			$vote['user-agent'] = $request->header('User-Agent');
 
     			$vote->value = -1;
@@ -186,7 +186,7 @@ class MainController extends Controller
 
     			$vote->value = -1;
     			$vote->cookie = $token;
-    			$vote->ip = \Request::ip();
+    			$vote->ip = $request->header('x-forwarded-for');
     			$vote['user-agent'] = $request->header('User-Agent');
 
     			$vote->save();
