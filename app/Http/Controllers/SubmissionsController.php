@@ -16,13 +16,20 @@ class SubmissionsController extends Controller
     public function show(Request $request, $id){
     	$submission = Submission::findOrFail($id);
 
-    	$replies = Submission_reply::where('submission_id', $id)->get();
+    	if($submission->created)
+
+    	$replies = Submission_reply::where('submission_id', $id)->orderBy('created_at', 'ASC')->get();
 
     	return view('submission')->with('submission', $submission)->with('replies', $replies);
     }
 
     public function reply(Request $request, $id){
+    	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())){
+    		die(404);
+    	}
+
     	$parentsubmission = Submission::findOrFail($id);
+
 
 
     	$ip = $request->header('x-forwarded-for');
