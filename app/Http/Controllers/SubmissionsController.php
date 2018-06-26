@@ -16,9 +16,7 @@ class SubmissionsController extends Controller
     public function show(Request $request, $id){
     	$submission = Submission::findOrFail($id);
 
-    	$replies = Submission_reply::where('submission_id', $id)->orderBy('created_at', 'asc')->get();
-
-    	return $replies;
+    	$replies = Submission_reply::where('submission_id', $id)->orderBy('created_at', 'asc');
 
     	return view('submission')->with('submission', $submission)->with('replies', $replies);
     }
