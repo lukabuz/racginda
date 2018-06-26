@@ -17,6 +17,11 @@ class Submission extends Model
         return $this->hasMany('App\Vote');
     }
 
+    public function replies()
+    {
+        return $this->hasMany('App\Vote');
+    }
+
     public function score(){
     	return Vote::where('submission_id', $this->id)->sum('value');
     }

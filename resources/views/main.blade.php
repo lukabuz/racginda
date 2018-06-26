@@ -653,6 +653,10 @@
     .item-reply:nth-child(2n){
       background-color: #D4910B;
     }
+
+    .author a {
+      color: #4a148c;
+    }
   </style>
   <title>რაცგინდა</title>
 </head>

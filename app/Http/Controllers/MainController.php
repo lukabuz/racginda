@@ -41,6 +41,10 @@ class MainController extends Controller
     		return redirect('/')->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
     	}
 
+        if(strlen($request->input('text')) < 2){
+            return redirect('/')->with('error', 'თქვენი პოსტი ძალიან მოკლეა!');
+        }
+
     	$value = Cookie::get('userToken');
 
     	if($value){
