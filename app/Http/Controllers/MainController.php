@@ -141,7 +141,7 @@ class MainController extends Controller
 	    	}
     	}
 
-    	return 'true';
+    	return redirect('/');
     }
 
     public function downvote(Request $request, $id){
@@ -212,6 +212,6 @@ class MainController extends Controller
 	    	}
     	}
 
-    	return 'true';
+    	return redirect('/');
     }
 }
