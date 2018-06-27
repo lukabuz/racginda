@@ -495,64 +495,7 @@
       text-shadow: 2px 2px rgba(0,0,0,0.4);
     }
 
-    @media only screen and (max-width: 1150px) {
-      .grid {
-        grid-template-columns: repeat(12, 1fr);
-        padding: 15px;
-      }
-
-      .item-reply,
-      .item {
-        grid-column: 1 / -1;
-      }
-
-      .form {
-        grid-column: 1 / -1;
-      }
-    }
-
-    .notification.success {
-      background-color: #9ccc65;
-    }
-
-    .notification.fail {
-      background-color: #e53935;
-    }
-
-    .notification {
-      position: fixed;
-      top: 0;
-      height: 50px;
-      color: white;
-      width: 100%;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-      font-family: bld;
-      overflow: hidden;
-      z-index: 99;
-      transition: height 250ms;
-    }
-
-    .notification h1 {
-      position: fixed;
-      top: -7px;
-      right: 15px;
-      font-size: 1.5rem;
-      font-family: english;
-      cursor: pointer;
-    }
-
-    .notification p {
-      text-align: center;
-      padding: 0px 40px;
-    }
-
-    .content p a {
-      text-decoration: none;
-      color: #4a148c;
-      word-break: break-all;
-    }
-
-        .refresh-svg {
+            .refresh-svg {
       height: 30px;
       fill: white;
       cursor: pointer;
@@ -646,6 +589,63 @@
 
     .author a {
       color: #4a148c;
+    }
+
+    @media only screen and (max-width: 1150px) {
+      .grid {
+        grid-template-columns: repeat(12, 1fr);
+        padding: 15px;
+      }
+
+      .item-reply,
+      .item {
+        grid-column: 1 / -1;
+      }
+
+      .form {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .notification.success {
+      background-color: #9ccc65;
+    }
+
+    .notification.fail {
+      background-color: #e53935;
+    }
+
+    .notification {
+      position: fixed;
+      top: 0;
+      height: 50px;
+      color: white;
+      width: 100%;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      font-family: bld;
+      overflow: hidden;
+      z-index: 99;
+      transition: height 250ms;
+    }
+
+    .notification h1 {
+      position: fixed;
+      top: -7px;
+      right: 15px;
+      font-size: 1.5rem;
+      font-family: english;
+      cursor: pointer;
+    }
+
+    .notification p {
+      text-align: center;
+      padding: 0px 40px;
+    }
+
+    .content p a {
+      text-decoration: none;
+      color: #4a148c;
+      word-break: break-all;
     }
 
     @media only screen and (min-width: 1150px) {
