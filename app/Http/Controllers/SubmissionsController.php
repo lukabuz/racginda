@@ -15,7 +15,7 @@ class SubmissionsController extends Controller
     //
     public function show(Request $request, $id){
     	if(Submission::where('id', $id)->where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->count() == 0){
-    		die(404);
+    		abort(404);
     	}
 
     	$submission = Submission::findOrFail($id);
@@ -27,7 +27,7 @@ class SubmissionsController extends Controller
 
     public function reply(Request $request, $id){
     	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->count() == 0){
-    		die(404);
+    		abort(404);
     	}
 
     	$parentsubmission = Submission::findOrFail($id);
