@@ -19,16 +19,16 @@
   <meta property="og:title"              content="რაცგინდა" />
   <meta property="og:description"        content="რაცგინდა - აქ სიტყვის თავისუფლება და ანონიმურობა მეფობს" />
   <meta property="og:image"              content="https://i.imgur.com/LG0A70T.png" />
-      <style>
+  <style>
       /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
     /* Document
-       ========================================================================== */
+      ========================================================================== */
 
     /**
-     * 1. Correct the line height in all browsers.
-     * 2. Prevent adjustments of font size after orientation changes in iOS.
-     */
+    * 1. Correct the line height in all browsers.
+    * 2. Prevent adjustments of font size after orientation changes in iOS.
+    */
 
     html {
       line-height: 1.15; /* 1 */
@@ -36,20 +36,20 @@
     }
 
     /* Sections
-       ========================================================================== */
+      ========================================================================== */
 
     /**
-     * Remove the margin in all browsers.
-     */
+    * Remove the margin in all browsers.
+    */
 
     body {
       margin: 0;
     }
 
     /**
-     * Correct the font size and margin on `h1` elements within `section` and
-     * `article` contexts in Chrome, Firefox, and Safari.
-     */
+    * Correct the font size and margin on `h1` elements within `section` and
+    * `article` contexts in Chrome, Firefox, and Safari.
+    */
 
     h1 {
       font-size: 2em;
@@ -57,12 +57,12 @@
     }
 
     /* Grouping content
-       ========================================================================== */
+      ========================================================================== */
 
     /**
-     * 1. Add the correct box sizing in Firefox.
-     * 2. Show the overflow in Edge and IE.
-     */
+    * 1. Add the correct box sizing in Firefox.
+    * 2. Show the overflow in Edge and IE.
+    */
 
     hr {
       box-sizing: content-box; /* 1 */
@@ -71,9 +71,9 @@
     }
 
     /**
-     * 1. Correct the inheritance and scaling of font size in all browsers.
-     * 2. Correct the odd `em` font sizing in all browsers.
-     */
+    * 1. Correct the inheritance and scaling of font size in all browsers.
+    * 2. Correct the odd `em` font sizing in all browsers.
+    */
 
     pre {
       font-family: monospace, monospace; /* 1 */
@@ -81,20 +81,20 @@
     }
 
     /* Text-level semantics
-       ========================================================================== */
+      ========================================================================== */
 
     /**
-     * Remove the gray background on active links in IE 10.
-     */
+    * Remove the gray background on active links in IE 10.
+    */
 
     a {
       background-color: transparent;
     }
 
     /**
-     * 1. Remove the bottom border in Chrome 57-
-     * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
-     */
+    * 1. Remove the bottom border in Chrome 57-
+    * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+    */
 
     abbr[title] {
       border-bottom: none; /* 1 */
@@ -103,8 +103,8 @@
     }
 
     /**
-     * Add the correct font weight in Chrome, Edge, and Safari.
-     */
+    * Add the correct font weight in Chrome, Edge, and Safari.
+    */
 
     b,
     strong {
@@ -112,9 +112,9 @@
     }
 
     /**
-     * 1. Correct the inheritance and scaling of font size in all browsers.
-     * 2. Correct the odd `em` font sizing in all browsers.
-     */
+    * 1. Correct the inheritance and scaling of font size in all browsers.
+    * 2. Correct the odd `em` font sizing in all browsers.
+    */
 
     code,
     kbd,
@@ -124,17 +124,17 @@
     }
 
     /**
-     * Add the correct font size in all browsers.
-     */
+    * Add the correct font size in all browsers.
+    */
 
     small {
       font-size: 80%;
     }
 
     /**
-     * Prevent `sub` and `sup` elements from affecting the line height in
-     * all browsers.
-     */
+    * Prevent `sub` and `sup` elements from affecting the line height in
+    * all browsers.
+    */
 
     sub,
     sup {
@@ -153,23 +153,23 @@
     }
 
     /* Embedded content
-       ========================================================================== */
+      ========================================================================== */
 
     /**
-     * Remove the border on images inside links in IE 10.
-     */
+    * Remove the border on images inside links in IE 10.
+    */
 
     img {
       border-style: none;
     }
 
     /* Forms
-       ========================================================================== */
+      ========================================================================== */
 
     /**
-     * 1. Change the font styles in all browsers.
-     * 2. Remove the margin in Firefox and Safari.
-     */
+    * 1. Change the font styles in all browsers.
+    * 2. Remove the margin in Firefox and Safari.
+    */
 
     button,
     input,
@@ -183,9 +183,9 @@
     }
 
     /**
-     * Show the overflow in IE.
-     * 1. Show the overflow in Edge.
-     */
+    * Show the overflow in IE.
+    * 1. Show the overflow in Edge.
+    */
 
     button,
     input { /* 1 */
@@ -193,9 +193,9 @@
     }
 
     /**
-     * Remove the inheritance of text transform in Edge, Firefox, and IE.
-     * 1. Remove the inheritance of text transform in Firefox.
-     */
+    * Remove the inheritance of text transform in Edge, Firefox, and IE.
+    * 1. Remove the inheritance of text transform in Firefox.
+    */
 
     button,
     select { /* 1 */
@@ -203,8 +203,8 @@
     }
 
     /**
-     * Correct the inability to style clickable types in iOS and Safari.
-     */
+    * Correct the inability to style clickable types in iOS and Safari.
+    */
 
     button,
     [type="button"],
@@ -214,8 +214,8 @@
     }
 
     /**
-     * Remove the inner border and padding in Firefox.
-     */
+    * Remove the inner border and padding in Firefox.
+    */
 
     button::-moz-focus-inner,
     [type="button"]::-moz-focus-inner,
@@ -226,8 +226,8 @@
     }
 
     /**
-     * Restore the focus styles unset by the previous rule.
-     */
+    * Restore the focus styles unset by the previous rule.
+    */
 
     button:-moz-focusring,
     [type="button"]:-moz-focusring,
@@ -237,19 +237,19 @@
     }
 
     /**
-     * Correct the padding in Firefox.
-     */
+    * Correct the padding in Firefox.
+    */
 
     fieldset {
       padding: 0.35em 0.75em 0.625em;
     }
 
     /**
-     * 1. Correct the text wrapping in Edge and IE.
-     * 2. Correct the color inheritance from `fieldset` elements in IE.
-     * 3. Remove the padding so developers are not caught out when they zero out
-     *    `fieldset` elements in all browsers.
-     */
+    * 1. Correct the text wrapping in Edge and IE.
+    * 2. Correct the color inheritance from `fieldset` elements in IE.
+    * 3. Remove the padding so developers are not caught out when they zero out
+    *    `fieldset` elements in all browsers.
+    */
 
     legend {
       box-sizing: border-box; /* 1 */
@@ -261,25 +261,25 @@
     }
 
     /**
-     * Add the correct vertical alignment in Chrome, Firefox, and Opera.
-     */
+    * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+    */
 
     progress {
       vertical-align: baseline;
     }
 
     /**
-     * Remove the default vertical scrollbar in IE 10+.
-     */
+    * Remove the default vertical scrollbar in IE 10+.
+    */
 
     textarea {
       overflow: auto;
     }
 
     /**
-     * 1. Add the correct box sizing in IE 10.
-     * 2. Remove the padding in IE 10.
-     */
+    * 1. Add the correct box sizing in IE 10.
+    * 2. Remove the padding in IE 10.
+    */
 
     [type="checkbox"],
     [type="radio"] {
@@ -288,8 +288,8 @@
     }
 
     /**
-     * Correct the cursor style of increment and decrement buttons in Chrome.
-     */
+    * Correct the cursor style of increment and decrement buttons in Chrome.
+    */
 
     [type="number"]::-webkit-inner-spin-button,
     [type="number"]::-webkit-outer-spin-button {
@@ -297,9 +297,9 @@
     }
 
     /**
-     * 1. Correct the odd appearance in Chrome and Safari.
-     * 2. Correct the outline style in Safari.
-     */
+    * 1. Correct the odd appearance in Chrome and Safari.
+    * 2. Correct the outline style in Safari.
+    */
 
     [type="search"] {
       -webkit-appearance: textfield; /* 1 */
@@ -307,17 +307,17 @@
     }
 
     /**
-     * Remove the inner padding in Chrome and Safari on macOS.
-     */
+    * Remove the inner padding in Chrome and Safari on macOS.
+    */
 
     [type="search"]::-webkit-search-decoration {
       -webkit-appearance: none;
     }
 
     /**
-     * 1. Correct the inability to style clickable types in iOS and Safari.
-     * 2. Change font properties to `inherit` in Safari.
-     */
+    * 1. Correct the inability to style clickable types in iOS and Safari.
+    * 2. Change font properties to `inherit` in Safari.
+    */
 
     ::-webkit-file-upload-button {
       -webkit-appearance: button; /* 1 */
@@ -325,38 +325,38 @@
     }
 
     /* Interactive
-       ========================================================================== */
+      ========================================================================== */
 
     /*
-     * Add the correct display in Edge, IE 10+, and Firefox.
-     */
+    * Add the correct display in Edge, IE 10+, and Firefox.
+    */
 
     details {
       display: block;
     }
 
     /*
-     * Add the correct display in all browsers.
-     */
+    * Add the correct display in all browsers.
+    */
 
     summary {
       display: list-item;
     }
 
     /* Misc
-       ========================================================================== */
+      ========================================================================== */
 
     /**
-     * Add the correct display in IE 10+.
-     */
+    * Add the correct display in IE 10+.
+    */
 
     template {
       display: none;
     }
 
     /**
-     * Add the correct display in IE 10.
-     */
+    * Add the correct display in IE 10.
+    */
 
     [hidden] {
       display: none;
@@ -455,6 +455,7 @@
       box-sizing: border-box;
       resize: vertical;
       border-radius: 3px;
+      margin-bottom: 10px;
     }
 
     .item:nth-child(2n){
@@ -531,24 +532,24 @@
       top: 20px;
       left: 20px;
     }
-     
+    
     .new-sort {
       height: 30px;
       fill: white;
       padding-left: 30px;
       transition: fill 250ms;
     }
-     
+    
     .hot-sort {
       height: 30px;
       fill: #f9a825;
       transition: fill 250ms;
     }
-     
+    
     .hot-sort:hover {
       fill: #f57f17;
     }
-     
+    
     .new-sort:hover {
       fill: #f5f5f5;
     }
@@ -558,11 +559,11 @@
       height: 25px;
       fill: white;
     }
-     
+    
     .reply-svg {
       padding-left: 15px;
     }
-     
+    
     .author h3 {
       font-family: english;
       font-weight: 400;
@@ -572,12 +573,12 @@
       margin: 0;
       padding: 0 10px;
     }
-     
+    
     .author {
       display: flex;
       align-items: center;
     }
-     
+    
     .item-reply {
       grid-column: 2 / 12;
       background-color: #4180AB;
@@ -591,7 +592,7 @@
       box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
       position: relative;
     }
-     
+    
     .item-reply:nth-child(2n){
       background-color: #D4910B;
     }
@@ -600,7 +601,29 @@
       color: #4a148c;
     }
 
+    .content img {
+      width: 600px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+    }
+    
+    .form label {
+      background-color: #D4910B;
+      padding: 5px;
+      font-family: gogo;
+      color: white;
+      font-size: 1rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      cursor: pointer;
+    }
+
     @media only screen and (max-width: 1150px) {
+      .content img {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 3px;
+      }
+      
       .grid {
         grid-template-columns: repeat(12, 1fr);
         padding: 15px;

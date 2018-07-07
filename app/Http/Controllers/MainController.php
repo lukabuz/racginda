@@ -54,7 +54,31 @@ class MainController extends Controller
     			$submission->description = $request->input('text');
     			$submission->cookie = $value;
     			$submission->ip = $ip;
-    			$submission['user-agent'] = $request->header('User-Agent');
+				$submission['user-agent'] = $request->header('User-Agent');
+				
+				if($request->hasFile('file')){
+					$this->validate($request, [
+					'file' => 'image|max:1999|required',
+					]);
+
+					$data = getimagesize($request->file('file'));
+					$width = $data[0];
+					$height = $data[1];
+
+					if($width < 3840 && $height < 2160){
+						$filenameWithExt = $request->file('file')->getClientOriginalName();
+
+						$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+						$extension = $request->file('file')->getClientOriginalExtension();
+
+						$filenameToStore = $filename.'_'.time().'.'.$extension;
+
+						$path = $request->file('file')->storeAs('public/pictures', $filenameToStore);
+
+						$submission->imageLink = $filenameToStore;
+					}
+				}
 
     			$submission->save();
 
@@ -72,7 +96,31 @@ class MainController extends Controller
     			$submission->description = $request->input('text');
     			$submission->cookie = $token;
     			$submission->ip = $ip;
-    			$submission['user-agent'] = $request->header('User-Agent');
+				$submission['user-agent'] = $request->header('User-Agent');
+				
+				if($request->hasFile('file')){
+					$this->validate($request, [
+					'file' => 'image|max:1999|required',
+					]);
+
+					$data = getimagesize($request->file('file'));
+					$width = $data[0];
+					$height = $data[1];
+
+					if($width < 3840 && $height < 2160){
+						$filenameWithExt = $request->file('file')->getClientOriginalName();
+
+						$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+						$extension = $request->file('file')->getClientOriginalExtension();
+
+						$filenameToStore = $filename.'_'.time().'.'.$extension;
+
+						$path = $request->file('file')->storeAs('public/pictures', $filenameToStore);
+
+						$submission->imageLink = $filenameToStore;
+					}
+				}
 
     			$submission->save();
 
