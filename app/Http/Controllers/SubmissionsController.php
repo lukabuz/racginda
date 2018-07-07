@@ -62,7 +62,7 @@ class SubmissionsController extends Controller
 				
 				if($request->hasFile('file')){
 					$this->validate($request, [
-					'file' => 'image|max:1999|required',
+						'file' => 'image|max:1999|required',
 					]);
 
 					$data = getimagesize($request->file('file'));
@@ -81,6 +81,8 @@ class SubmissionsController extends Controller
 						$path = $request->file('file')->storeAs('public/pictures', $filenameToStore);
 
 						$submission->imageLink = $filenameToStore;
+					} else {
+						return redirect('/')->with('error', 'სურათი ძალიან დიდია!');
 					}
 				}
 
@@ -105,7 +107,7 @@ class SubmissionsController extends Controller
 				
 				if($request->hasFile('file')){
 					$this->validate($request, [
-					'file' => 'image|max:1999|required',
+						'file' => 'image|max:1999|required',
 					]);
 
 					$data = getimagesize($request->file('file'));
@@ -124,6 +126,8 @@ class SubmissionsController extends Controller
 						$path = $request->file('file')->storeAs('public/pictures', $filenameToStore);
 
 						$submission->imageLink = $filenameToStore;
+					} else {
+						return redirect('/')->with('error', 'სურათი ძალიან დიდია!');
 					}
 				}
 
