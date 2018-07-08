@@ -603,7 +603,7 @@
     }
 
     .content img {
-      width: 600px;
+      max-width: 600px;
       margin-bottom: 10px;
       border-radius: 3px;
     }
