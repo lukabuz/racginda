@@ -9,6 +9,8 @@ use App\Vote;
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class SubmissionsController extends Controller
 {
@@ -78,7 +80,7 @@ class SubmissionsController extends Controller
 
 						$filenameToStore = $filename.'_'.time().'.'.$extension;
 
-						$path = $request->file('file')->storeAs('public/pictures', $filenameToStore);
+						Storage::disk('s3')->put($filenameToStore, $request->file('file'));
 
 						$submission->imageLink = $filenameToStore;
 					} else {
@@ -123,7 +125,7 @@ class SubmissionsController extends Controller
 
 						$filenameToStore = $filename.'_'.time().'.'.$extension;
 
-						$path = $request->file('file')->storeAs('public/pictures', $filenameToStore);
+						Storage::disk('s3')->put($filenameToStore, $request->file('file'));
 
 						$submission->imageLink = $filenameToStore;
 					} else {

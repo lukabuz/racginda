@@ -728,8 +728,8 @@
       <h1>დააფიქსირე შენი აზრი.</h1>
       @csrf
       <textarea placeholder="ასჯერ გაზომე, ერთხელ გაჭერი." name="text" rows="6" cols="80"></textarea>
-      {{-- <label for="files" class="btn">სურათი</label>
-      <input name="file" id="files" style="display: none" type="file" accept="image/*"> --}}
+      <label for="files" class="btn">სურათი</label>
+      <input name="file" id="files" style="display: none" type="file" accept="image/*">
       <button class="btn" type="submit" form="form1">გაჭრა</button>
     </div>
 
