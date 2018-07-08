@@ -80,7 +80,7 @@ class SubmissionsController extends Controller
 
 						$filenameToStore = $filename.'_'.time().'.'.$extension;
 
-						$request->file('file')->storeAs('photos', $filenameToStore, 's3');
+						$request->file('file')->storeAs('photos', $filenameToStore, 's3', 'public');
 
 						$submission->imageLink = $filenameToStore;
 					} else {
@@ -125,7 +125,7 @@ class SubmissionsController extends Controller
 
 						$filenameToStore = $filename.'_'.time().'.'.$extension;
 
-						$request->file('file')->storeAs('photos', $filenameToStore, 's3');
+						$request->file('file')->storeAs('photos', $filenameToStore, 's3', 'public');
 
 						$submission->imageLink = $filenameToStore;
 					} else {
