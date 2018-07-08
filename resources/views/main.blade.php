@@ -620,7 +620,7 @@
 
     @media only screen and (max-width: 1150px) {
       .content img {
-        width: 100%;
+        max-width: 100%;
         margin-bottom: 10px;
         border-radius: 3px;
       }
