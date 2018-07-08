@@ -733,6 +733,9 @@
     <div class="item">
       <div class="content">
         <p>{!! preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', nl2br(e($submission->description))) !!}</p>
+        @if($submission->imageLink != null)
+          <img src="https://s3.eu-central-1.amazonaws.com/racginda/photos/{{$submission->imageLink}}" alt="">
+        @endif
       </div>
       <div class="voting" data-id="{{$submission->id}}">
         @if($submission->votevalue() == 1)
@@ -761,6 +764,9 @@
       <div class="item-reply">
         <div class="content">
           <p>{!! preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', nl2br(e($reply->description))) !!}</p>
+          @if($reply->imageLink != null)
+          <img src="https://s3.eu-central-1.amazonaws.com/racginda/photos/{{$reply->imageLink}}" alt="">
+          @endif
         </div>
         <div>
         </div>
