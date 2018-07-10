@@ -34,8 +34,6 @@ class SubmissionsController extends Controller
 
     	$parentsubmission = Submission::findOrFail($id);
 
-
-
     	$ip = $request->header('x-forwarded-for');
 
     	$ip = explode(",",$ip);
@@ -111,6 +109,8 @@ class SubmissionsController extends Controller
 					$this->validate($request, [
 						'file' => 'image|max:1999|required',
 					]);
+
+					die($request->file('file'));
 
 					$data = getimagesize($request->file('file'));
 					$width = $data[0];
