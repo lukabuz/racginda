@@ -65,6 +65,8 @@ class SubmissionsController extends Controller
 						'file' => 'image|max:1999|required',
 					]);
 
+					die($request->file('file'));
+
 					$data = getimagesize($request->file('file'));
 					$width = $data[0];
 					$height = $data[1];
