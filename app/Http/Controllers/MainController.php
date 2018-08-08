@@ -39,7 +39,7 @@ class MainController extends Controller
 
         $ip = $ip[0];
 
-    	if(strlen($request->input('text')) > 2000){
+    	if(strlen($request->input('text')) > 3500){
     		return redirect('/')->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
     	}
 
