@@ -20,8 +20,6 @@ class ForcedHTTPS
             return redirect()->secure($request->getRequestUri());
         }
 
-        $request->setTrustedProxies( [ $request->getClientIp() ] );
-
         return $next($request); 
     }
 }
