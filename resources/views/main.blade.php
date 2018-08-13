@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="https://i.imgur.com/OdB5Wd5.png" type="image/png" sizes="16x16">
-  <meta property="og:url"                content="http://racginda.site" />
+  <meta property="og:url"                content="https://racginda.site" />
   <meta property="og:type"               content="website" />
   <meta property="og:title"              content="რაცგინდა" />
   <meta property="og:description"        content="რაცგინდა - აქ სიტყვის თავისუფლება და ანონიმურობა მეფობს" />

@@ -40,7 +40,7 @@ class SubmissionsController extends Controller
 
         $ip = $ip[0];
 
-    	if(strlen($request->input('text')) > 1200){
+    	if(strlen($request->input('text')) > 3500){
     		return redirect()->back()->with('error', 'თქვენი პოსტი ძალიან გრძელია!');
     	}
 
