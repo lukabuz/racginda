@@ -16,12 +16,12 @@ class MainController extends Controller
     //
     public function index(Request $request){
     	if($request->get('sort') == 'new'){
-    		$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->orderBy('created_at', 'esc')->get();
+    		$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(48)->toDateTimeString())->orderBy('created_at', 'desc')->get();
 
     		return view('main')->with('submissions', $submissions);
     	}
 
-    	$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->get();
+    	$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(48)->toDateTimeString())->get();
 
     	$submissions = $submissions->sortByDesc(function ($product, $key) {
 			$product->votecount = Vote::where('submission_id', $product->id)->sum('value');
@@ -50,7 +50,7 @@ class MainController extends Controller
     	$value = Cookie::get('userToken');
 
     	if($value){
-    		if(Submission::where('cookie', $value)->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())->count() == 0){
+    		if(Submission::where('cookie', $value)->where('created_at', '>=', Carbon::now()->subMinutes(2)->toDateTimeString())->count() == 0){
     			$submission = new Submission;
 
     			$submission->description = $request->input('text');
@@ -88,10 +88,10 @@ class MainController extends Controller
 
     			return redirect('/')->with('message', 'თქვენი პოსტი დამატებულია!');
     		} else {
-    			return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
+    			return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 2 წუთში ერთხელ შეგიძლიათ');
     		}
     	} else {
-    		if(Submission::where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())->count() == 0){
+    		if(Submission::where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subMinutes(2)->toDateTimeString())->count() == 0){
 	    		
 	    		$token = str_random(40);
 
@@ -132,7 +132,7 @@ class MainController extends Controller
 
 	    		return redirect('/')->with('message', 'თქვენი პოსტი დამატებულია!')->withCookie(Cookie::forever('userToken', $token));
 	    	} else {
-	    		return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
+	    		return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 2 წუთში ერთხელ შეგიძლიათ');
 	    	}
     	}
     }

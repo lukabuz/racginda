@@ -16,7 +16,7 @@ class SubmissionsController extends Controller
 {
     //
     public function show(Request $request, $id){
-    	if(Submission::where('id', $id)->where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->count() == 0){
+    	if(Submission::where('id', $id)->where('created_at', '>=', Carbon::now()->subHours(48)->toDateTimeString())->count() == 0){
     		abort(404);
     	}
 
@@ -28,7 +28,7 @@ class SubmissionsController extends Controller
     }
 
     public function reply(Request $request, $id){
-    	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(24)->toDateTimeString())->count() == 0){
+    	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(48)->toDateTimeString())->count() == 0){
     		abort(404);
     	}
 
@@ -51,7 +51,7 @@ class SubmissionsController extends Controller
     	$value = Cookie::get('userToken');
 
     	if($value){
-    		if(Submission_reply::where('cookie', $value)->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())->count() == 0){
+    		if(Submission_reply::where('cookie', $value)->where('created_at', '>=', Carbon::now()->subMinutes(2)->toDateTimeString())->count() == 0){
     			$submission = new Submission_reply;
 
     			$submission->submission_id = $parentsubmission->id;
@@ -90,7 +90,7 @@ class SubmissionsController extends Controller
 
     			return redirect()->back()->with('message', 'თქვენი პოსტი დამატებულია!');
     		} else {
-    			return redirect()->back()->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
+    			return redirect()->back()->with('error', 'თქვენ ამის გაკეთება მხოლოდ 2 წუთში ერთხელ შეგიძლიათ');
     		}
     	} else {
     		if(Submission_reply::where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subMinutes(5)->toDateTimeString())->count() == 0){
@@ -135,7 +135,7 @@ class SubmissionsController extends Controller
 
 	    		return redirect()->back()->with('message', 'თქვენი პოსტი დამატებულია!')->withCookie(Cookie::forever('userToken', $token));
 	    	} else {
-	    		return redirect()->back()->with('error', 'თქვენ ამის გაკეთება მხოლოდ 5 წუთში ერთხელ შეგიძლიათ');
+	    		return redirect()->back()->with('error', 'თქვენ ამის გაკეთება მხოლოდ 2 წუთში ერთხელ შეგიძლიათ');
 	    	}
     	}
     }
