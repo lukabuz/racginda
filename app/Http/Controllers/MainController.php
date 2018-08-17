@@ -16,12 +16,12 @@ class MainController extends Controller
     //
     public function index(Request $request){
     	if($request->get('sort') == 'new'){
-    		$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(48)->toDateTimeString())->orderBy('created_at', 'desc')->get();
+    		$submissions = Submission::all()->orderBy('created_at', 'desc')->take(40)->get();
 
     		return view('main')->with('submissions', $submissions);
     	}
 
-    	$submissions = Submission::where('created_at', '>=', Carbon::now()->subHours(48)->toDateTimeString())->get();
+    	$submissions = Submission::all()->orderBy('created_at', 'desc')->take(40)->get();
 
     	$submissions = $submissions->sortByDesc(function ($product, $key) {
 			$product->votecount = Vote::where('submission_id', $product->id)->sum('value');

@@ -16,7 +16,7 @@ class SubmissionsController extends Controller
 {
     //
     public function show(Request $request, $id){
-    	if(Submission::where('id', $id)->where('created_at', '>=', Carbon::now()->subHours(48)->toDateTimeString())->count() == 0){
+    	if(Submission::all()->orderBy('created_at', 'desc')->take(40)->where('id', $id)->count() == 0){
     		abort(404);
     	}
 
@@ -28,7 +28,7 @@ class SubmissionsController extends Controller
     }
 
     public function reply(Request $request, $id){
-    	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(48)->toDateTimeString())->count() == 0){
+    	if(Submission::findOrFail($id)->where('created_at', '>=', Carbon::now()->subHours(72)->toDateTimeString())->count() == 0){
     		abort(404);
     	}
 
