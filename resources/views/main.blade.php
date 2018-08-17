@@ -736,7 +736,7 @@
     @forelse($submissions as $submission)
     <div class="item">
       <div class="content">
-        <p>{!! preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', nl2br(e($submission->description))) !!}</p>
+        <p>{!! preg_replace('>.*/g', '<font color="#789922">$1</font>', preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', nl2br(e($submission->description)))) !!}</p>
         @if($submission->imageLink != null)
           <a href="https://s3.eu-central-1.amazonaws.com/racginda/photos/{{$submission->imageLink}}" target="_blank">
           <img src="https://s3.eu-central-1.amazonaws.com/racginda/photos/{{$submission->imageLink}}" alt="">
