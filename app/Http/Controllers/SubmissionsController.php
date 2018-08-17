@@ -16,7 +16,7 @@ class SubmissionsController extends Controller
 {
     //
     public function show(Request $request, $id){
-    	if(Submission::all()->orderBy('created_at', 'desc')->take(40)->where('id', $id)->count() == 0){
+    	if(Submission::orderBy('created_at', 'desc')->take(40)->where('id', $id)->count() == 0){
     		abort(404);
     	}
 
