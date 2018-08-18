@@ -16,9 +16,7 @@ class MainController extends Controller
     //
     public function index(Request $request){
     	if($request->get('sort') == 'new'){
-    		$submissions = Submission::orderBy('created_at', 'desc')->take(40)->get();
-
-    		return view('main')->with('submissions', $submissions);
+    		return view('main')->with('submissions', Submission::orderBy('created_at', 'desc')->take(40)->get());
     	}
 
     	$submissions = Submission::orderBy('created_at', 'desc')->take(40)->get();

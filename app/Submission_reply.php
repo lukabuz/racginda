@@ -13,8 +13,6 @@ class Submission_reply extends Model
     }
 
     public function getid(){
-        $id = md5($this['user-agent'] . $this->ip . "დედის მუტელი");
-
-        return substr($id, -10, 5);
+        return substr(md5($this['user-agent'] . $this->ip . "დედის მუტელი"), -10, 5);
     }
 }

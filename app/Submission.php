@@ -32,9 +32,7 @@ class Submission extends Model
 
     	$id = $this->id;
 
-    	$ip = app('request')->header('x-forwarded-for');
-
-    	$ip = explode(",",$ip);
+    	$ip = explode(",",app('request')->header('x-forwarded-for'));
 
         $ip = $ip[0];
 
@@ -55,9 +53,7 @@ class Submission extends Model
     }
 
     public function getid(){
-        $id = md5($this['user-agent'] . $this->ip . "დედის მუტელი");
-
-        return substr($id, -10, 5);
+        return substr(md5($this['user-agent'] . $this->ip . "დედის მუტელი"), -10, 5);
     }
 
     public function replyconut(){
