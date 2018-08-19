@@ -13,13 +13,11 @@ use App\Submission_reply;
 class Submission extends Model
 {
     //
-    public function votes()
-    {
+    public function votes(){
         return $this->hasMany('App\Vote');
     }
 
-    public function replies()
-    {
+    public function replies(){
         return $this->hasMany('App\Vote');
     }
 
@@ -58,5 +56,138 @@ class Submission extends Model
 
     public function replyconut(){
         return Submission_reply::where('submission_id', $this->id)->count();
+    }
+
+    public function upvote(){
+
+        $value = Cookie::get('userToken');
+    	$ip = explode(",", $request->header('x-forwarded-for'));
+        $ip = $ip[0];
+
+        if($value){
+            if(Vote::where('cookie', $value)->where('submission_id', $this->id)->count() == 0){
+				$vote = new Vote;
+
+				$vote->submission_id = $this->id;
+				$vote->cookie = $value;
+    			$vote->ip = $ip;
+    			$vote['user-agent'] = $request->header('User-Agent');
+                $vote->value = 1;
+
+    			$vote->save();
+
+    		} else {
+    			$vote = Vote::where('cookie', $value)->where('submission_id', $this->id)->first();
+
+    			if($vote->value == 1){
+    				$vote->delete();
+    			} else {
+
+    				$vote->value = 1;
+                    $vote->save();
+                    
+    			}
+    		}
+        } else {
+            if(Vote::where('submission_id', $this->id)->where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+	    		
+	    		$token = str_random(40);
+
+	    		$vote = new Vote;
+
+	    		$vote->submission_id = $this->id;
+
+    			$vote->value = 1;
+    			$vote->cookie = $token;
+    			$vote->ip = $ip;
+    			$vote['user-agent'] = $request->header('User-Agent');
+
+    			$vote->save();
+
+	    	} else {
+	    		$vote = Vote::where('submission_id', $this->id)->where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
+
+    			if($vote->value == 1){
+
+    				$vote->delete();
+
+    			} else {
+
+    				$vote->value = 1;
+
+    				$vote->save();
+
+    			}
+	    	}
+        }
+
+        return 'true';
+    }
+
+    public function downvote(){
+
+        $value = Cookie::get('userToken');
+    	$ip = explode(",", $request->header('x-forwarded-for'));
+        $ip = $ip[0];
+
+        if($value){
+            if(Vote::where('cookie', $value)->where('submission_id', $this->id)->count() == 0){
+				$vote = new Vote;
+
+				$vote->submission_id = $this->id;
+				$vote->cookie = $value;
+    			$vote->ip = $ip;
+    			$vote['user-agent'] = $request->header('User-Agent');
+                $vote->value = -1;
+
+    			$vote->save();
+
+    		} else {
+    			$vote = Vote::where('cookie', $value)->where('submission_id', $this->id)->first();
+
+    			if($vote->value == -1){
+    				$vote->delete();
+    			} else {
+
+    				$vote->value = -1;
+                    $vote->save();
+                    
+    			}
+    		}
+        } else {
+            if(Vote::where('submission_id', $this->id)->where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->count() == 0){
+	    		
+	    		$token = str_random(40);
+
+	    		$vote = new Vote;
+
+	    		$vote->submission_id = $this->id;
+
+    			$vote->value = -1;
+    			$vote->cookie = $token;
+    			$vote->ip = $ip;
+    			$vote['user-agent'] = $request->header('User-Agent');
+
+    			$vote->save();
+
+	    	} else {
+	    		$vote = Vote::where('submission_id', $this->id)->where('user-agent', $request->header('User-Agent'))->where('ip', $ip)->where('created_at', '>=', Carbon::now()->subHours(1)->toDateTimeString())->first();
+
+    			if($vote->value == -1){
+
+    				$vote->delete();
+
+    			} else {
+
+    				$vote->value = -1;
+
+    				$vote->save();
+
+    			}
+	    	}
+        }
+
+        return 'true';
+
     }
 }
