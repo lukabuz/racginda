@@ -138,12 +138,12 @@ class MainController extends Controller
     public function upvote(Request $request, $id){
 		$submission = Submission::findOrFail($id);
 		
-		return $submission->upvote($request);
+		return $submission->upvote();
     }
 
     public function downvote(Request $request, $id){
     	$submission = Submission::findOrFail($id);
 
-    	return $submission->downvote($request);
+    	return $submission->downvote();
     }
 }
