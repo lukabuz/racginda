@@ -58,7 +58,7 @@ class Submission extends Model
         return Submission_reply::where('submission_id', $this->id)->count();
     }
 
-    public function upvote(Request $request){
+    public function upvote(Illuminate\Http\Request $request){
 
         $value = Cookie::get('userToken');
     	$ip = explode(",", $request->header('x-forwarded-for'));
@@ -124,7 +124,7 @@ class Submission extends Model
         return 'true';
     }
 
-    public function downvote(Request $request){
+    public function downvote(Illuminate\Http\Request $request){
 
         $value = Cookie::get('userToken');
     	$ip = explode(",", $request->header('x-forwarded-for'));
