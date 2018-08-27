@@ -84,7 +84,7 @@ class MainController extends Controller
 
     			$submission->save();
 
-    			return redirect('/')->with('message', 'თქვენი პოსტი დამატებულია!');
+    			return redirect('/?sort=new')->with('message', 'თქვენი პოსტი დამატებულია!');
     		} else {
     			return redirect('/')->with('error', 'თქვენ ამის გაკეთება მხოლოდ 2 წუთში ერთხელ შეგიძლიათ');
     		}
